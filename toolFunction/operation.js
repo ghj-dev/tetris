@@ -8,6 +8,7 @@ let preShap = curShap;
 let centerPoint = null;
 let fixedPoint = [];
 let score = 0;
+let timer = null;
 //生成形状
 const generateShape = () => {
   const initialBlocks = document.querySelectorAll(".outBox div");
@@ -113,19 +114,19 @@ const down = () => {
   generateShape();
   //   console.log(curShap);
 };
-//向上
-const up = () => {
-  //   console.log(boundary("up"));
-  if (boundary("up")) return;
-  preShap = curShap;
-  curShap = curShap.map((item) => {
-    item = [item[0] - 1, item[1]];
-    return item;
-  });
-  clearMap();
-  generateShape();
-  console.log(curShap);
-};
+// //向上
+// const up = () => {
+//   //   console.log(boundary("up"));
+//   if (boundary("up")) return;
+//   preShap = curShap;
+//   curShap = curShap.map((item) => {
+//     item = [item[0] - 1, item[1]];
+//     return item;
+//   });
+//   clearMap();
+//   generateShape();
+//   console.log(curShap);
+// };
 //向左
 const left = () => {
   //   console.log(boundary("left"));
@@ -150,7 +151,9 @@ const right = () => {
   clearMap();
   generateShape();
 };
+//旋转
 const rotate = () => {
+  if (boundary("rotate")) return;
   preShap = curShap;
   centerPoint = curShap[2];
   const one = [centerPoint[0] - 1, centerPoint[1] - 1];
@@ -186,7 +189,7 @@ const rotate = () => {
   clearMap();
   generateShape();
   //   const all
-  console.log(curShap, centerPoint, allPoint);
+  // console.log(curShap, centerPoint, allPoint);
 };
 //清除地图
 const clearMap = () => {
@@ -205,7 +208,7 @@ function landingPoint() {
   //   console.log("curShap222", curShap);
   let isLanding = false;
   let isLanding1 = false;
-  console.log("fixedPoint", fixedPoint);
+  // console.log("fixedPoint", fixedPoint);
   fixedPoint.forEach((el, index) => {
     //   console.log('elllll',index)
     if (index < mapL) {
@@ -237,6 +240,16 @@ function landingPoint() {
   //   console.log(fixedPoint, curShap);
   return isLanding || isLanding1;
 }
+//
+//暂停
+const pause = () => {
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+  } else {
+    setTimer();
+  }
+};
 //游戏结束
 const gameOver = () => {};
 //记分
@@ -248,11 +261,11 @@ const scoring = () => {
     i--, j++
   ) {
     const every = score.toString().split("").reverse()[j];
-    console.log(every);
+    // console.log(every);
     scoreNumber[i].innerHTML = every === undefined ? 0 : Number(every);
     // score.split()
   }
-    console.log(score.toString().split(''));
+  // console.log(score.toString().split(""));
   // console.log(scoreNumber)
 };
 scoring();
@@ -274,7 +287,7 @@ function getPoints() {
   });
   for (let key in allLine) {
     if (allLine[key].length === 10) {
-      console.log(key);
+      // console.log(key);
       keys.push(Number(key));
     }
   }
@@ -299,8 +312,15 @@ function getPoints() {
     }
     scoring();
   }
-  console.log("222222", allLine, clearResult, fixedPoint);
+  // console.log("222222", allLine, clearResult, fixedPoint);
 }
+//生成定时器
+function setTimer() {
+  // console.log(timer)
+  timer = setInterval(down, 1000);
+  // console.log(timer);
+}
+setTimer();
 //按键操作
 const operate = () => {
   addEventListener("keypress", (event) => {
@@ -309,14 +329,14 @@ const operate = () => {
       case "s":
         down();
         break;
-      case "w":
-        up();
-        break;
       case "a":
         left();
         break;
       case "d":
         right();
+        break;
+      case "p":
+        pause();
         break;
       case " ":
         rotate();
