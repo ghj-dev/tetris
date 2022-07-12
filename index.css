@@ -1,0 +1,59 @@
+.contentBox {
+  display: flex;
+  width: 400px;
+  height: 404px;
+  margin: 0 auto;
+  background: #9ead86;
+  padding: 8px;
+  border: 2px solid #494536;
+}
+.gameContent {
+  width: 230px;
+  height: 100%;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  padding: 3px;
+}
+.tool {
+  width: calc(100% - 238px);
+  height: 100%;
+  margin-left: 8px;
+  box-sizing: border-box;
+  /* border: 1px solid gray; */
+}
+.outBox {
+  display: flex;
+}
+.outBox > div {
+  width: 20px;
+  height: 20px;
+  background-color: #879372;
+  margin: 0 2px 2px 0;
+}
+.outBox > .active {
+  background-color: #000;
+}
+.scoreboard{
+    width: 100%;
+    height: 100px;
+    /* background-color: aliceblue; */
+}
+.scoreboard >.title{
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+.scoreboard >.number{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 300;
+    color: #000;
+}
+.scoreboard >.number>div{
+    width: 20px;
+    height: 20px;
+    /* background-color: aqua; */
+    border: 1px dashed #879372;
+}
