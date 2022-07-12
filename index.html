@@ -9,26 +9,33 @@
   </head>
   <body>
     <div class="contentBox">
+      <div class="instructions">
+        <div class="title">游戏介绍</div>
+        <p>s键------>加速向下</p>
+        <p>a键------>向左移动</p>
+        <p>d键------>向右移动</p>
+        <p>空格键------>旋转</p>
+        <p>p键------>暂停/开始</p>
+      </div>
       <div class="gameContent"></div>
       <div class="tool">
-          <div class="scoreboard">
-              <div class="title">积分板</div>
-              <div class="number">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+        <div class="scoreboard">
+          <div class="title">积分板</div>
+          <div class="number">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
+        </div>
       </div>
     </div>
   </body>
-  
 </html>
 <script type="module">
-    import fns from "./toolFunction/index.js";
-    const {init} = fns
-    init()
+  import fns from "./toolFunction/index.js";
+  const { init } = fns;
+  init();
 </script>

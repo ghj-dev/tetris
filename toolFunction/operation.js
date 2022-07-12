@@ -46,6 +46,7 @@ function randomShape() {
 }
 //生成固定点
 const setFixedPoint = () => {
+  console.log('111',fixedPoint)
   if (!fixedPoint.length) {
     for (let i = 0; i < mapL; i++) {
       fixedPoint.push([mapY - 1, i]);
@@ -53,6 +54,7 @@ const setFixedPoint = () => {
   } else {
     fixedPoint.push(...curShap);
   }
+  console.log('222',fixedPoint)
 };
 //边界判定
 const boundary = (direction) => {
@@ -240,6 +242,13 @@ function landingPoint() {
   //   console.log(fixedPoint, curShap);
   return isLanding || isLanding1;
 }
+//清除整个地图
+const clearAllMap = () => {
+  const initialBlocks = document.querySelectorAll(".outBox div");
+  initialBlocks.forEach((el) => {
+    el.className = "";
+  });
+};
 //
 //暂停
 const pause = () => {
@@ -251,7 +260,26 @@ const pause = () => {
   }
 };
 //游戏结束
-const gameOver = () => {};
+const gameOver = (scoringPoint) => {
+  console.log(scoringPoint);
+  let isOver = false;
+  scoringPoint.forEach((el) => {
+    if (el[0] === 0) {
+      isOver = true;
+    }
+  });
+  if (isOver) {
+    alert("游戏失败");
+    clearInterval(timer);
+    fixedPoint = [];
+    setFixedPoint();
+    curShap = randomShape();
+    clearAllMap();
+    generateShape();
+    setTimer()
+    console.log(fixedPoint)
+  }
+};
 //记分
 const scoring = () => {
   let scoreNumber = document.querySelectorAll(".number div");
@@ -311,7 +339,9 @@ function getPoints() {
       score += 1000;
     }
     scoring();
+    // gameOver(fixedPoint);
   }
+  gameOver(scoringPoint);
   // console.log("222222", allLine, clearResult, fixedPoint);
 }
 //生成定时器
