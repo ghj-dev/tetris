@@ -46,7 +46,7 @@ function randomShape() {
 }
 //生成固定点
 const setFixedPoint = () => {
-  console.log('111',fixedPoint)
+  console.log("111", fixedPoint);
   if (!fixedPoint.length) {
     for (let i = 0; i < mapL; i++) {
       fixedPoint.push([mapY - 1, i]);
@@ -54,7 +54,7 @@ const setFixedPoint = () => {
   } else {
     fixedPoint.push(...curShap);
   }
-  console.log('222',fixedPoint)
+  console.log("222", fixedPoint);
 };
 //边界判定
 const boundary = (direction) => {
@@ -105,6 +105,9 @@ const boundary = (direction) => {
 };
 //向下
 const down = () => {
+  if (timer === null) {
+    setTimer();
+  }
   if (landingPoint()) return;
   if (boundary("down")) return;
   preShap = curShap;
@@ -132,6 +135,9 @@ const down = () => {
 //向左
 const left = () => {
   //   console.log(boundary("left"));
+  if (timer === null) {
+    setTimer();
+  }
   if (boundary("left")) return;
   preShap = curShap;
   curShap = curShap.map((item) => {
@@ -144,6 +150,9 @@ const left = () => {
 //向右
 const right = () => {
   //   console.log(boundary("right"));
+  if (timer === null) {
+    setTimer();
+  }
   if (boundary("right")) return;
   preShap = curShap;
   curShap = curShap.map((item) => {
@@ -276,8 +285,8 @@ const gameOver = (scoringPoint) => {
     curShap = randomShape();
     clearAllMap();
     generateShape();
-    setTimer()
-    console.log(fixedPoint)
+    setTimer();
+    console.log(fixedPoint);
   }
 };
 //记分
